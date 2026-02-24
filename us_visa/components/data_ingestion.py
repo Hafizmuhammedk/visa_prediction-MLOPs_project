@@ -9,7 +9,9 @@ from us_visa.entity.artifact_entity import DataIngestionArtifact
 from us_visa.exception import USvisaException
 from us_visa.logger import logging
 from us_visa.data_access.usvisa_data import USvisaData
+from dotenv import load_dotenv
 
+load_dotenv()
 
 class DataIngestion:
     def __init__(self, data_ingestion_config: DataIngestionConfig = DataIngestionConfig()):
@@ -32,16 +34,15 @@ class DataIngestion:
         try:
             logging.info("Exporting data from mongodb")
             usvisa_data = USvisaData()
-            dataframe = usvisa_data.export_collection_as_dataframe(collection_name=
-                                                                   self.data_ingestion_config.collection_name)
-            logging.info(f"Shape of dataframe: {dataframe.shape}")
-            feature_store_file_path = self.data_ingestion_config.feature_store_file_path
-            dir_path = os.path.dirname(feature_store_file_path)
-            os.makedirs(dir_path, exist_ok=True)
-            logging.info(f"Saving exported data into feature store file path: {feature_store_file_path}")
-            dataframe.to_csv(feature_store_file_path,
-                             index=False, header=True)
-            return dataframe
+            dataframe = usvisa_data.export_collection_as_dataframe(collection_name=self.data_ingestion_config.collection_name)
+            # logging.info(f"Shape of dataframe: {dataframe.shape}")
+            # feature_store_file_path = self.data_ingestion_config.feature_store_file_path
+            # dir_path = os.path.dirname(feature_store_file_path)
+            # os.makedirs(dir_path, exist_ok=True)
+            # logging.info(f"Saving exported data into feature store file path: {feature_store_file_path}")
+            # dataframe.to_csv(feature_store_file_path,
+            #                  index=False, header=True)
+            return True
 
         except Exception as e:
             raise USvisaException(e, sys)
@@ -88,20 +89,21 @@ class DataIngestion:
         try:
             dataframe = self.export_data_into_feature_store()
 
-            logging.info("Got the data from mongodb")
+            # logging.info("Got the data from mongodb")
 
-            self.split_data_as_train_test(dataframe)
+            # self.split_data_as_train_test(dataframe)
 
-            logging.info("Performed train test split on the dataset")
+            # logging.info("Performed train test split on the dataset")
 
-            logging.info(
-                "Exited initiate_data_ingestion method of Data_Ingestion class"
-            )
+            # logging.info(
+            #     "Exited initiate_data_ingestion method of Data_Ingestion class"
+            # )
 
-            data_ingestion_artifact = DataIngestionArtifact(trained_file_path=self.data_ingestion_config.training_file_path,
-            test_file_path=self.data_ingestion_config.testing_file_path)
+            # data_ingestion_artifact = DataIngestionArtifact(trained_file_path=self.data_ingestion_config.training_file_path,
+            # test_file_path=self.data_ingestion_config.testing_file_path)
 
-            logging.info(f"Data ingestion artifact: {data_ingestion_artifact}")
-            return data_ingestion_artifact
+            # logging.info(f"Data ingestion artifact: {data_ingestion_artifact}")
+            # return data_ingestion_artifact
+            return True
         except Exception as e:
             raise USvisaException(e, sys) from e
