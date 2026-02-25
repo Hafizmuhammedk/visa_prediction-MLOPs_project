@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DATABASE_NAME = "US_VISA"
+DATABASE_NAME = "us_visa"
 
 COLLECTION_NAME = "visa_data"
 

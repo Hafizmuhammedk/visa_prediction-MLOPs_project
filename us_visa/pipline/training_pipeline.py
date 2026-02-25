@@ -30,8 +30,7 @@ class TrainPipeline:
                 logging.info(
                     "Exited the start_data_ingestion method of TrainPipeline class"
                 )
-                return True
-                # return data_ingestion_artifact
+                return data_ingestion_artifact
             except Exception as e:
                 raise USvisaException(e, sys) from e
 
