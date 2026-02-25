@@ -1,6 +1,9 @@
 import os
 import sys
 from dotenv import load_dotenv
+from us_visa.logger import structlog
+
+logging = structlog.get_logger(__name__)
 
 load_dotenv()
 

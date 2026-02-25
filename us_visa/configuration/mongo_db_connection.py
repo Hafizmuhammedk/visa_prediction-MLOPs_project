@@ -1,13 +1,15 @@
 import sys
 
 from us_visa.exception import USvisaException
-from us_visa.logger import logging
 
 import os
 from us_visa.constants import DATABASE_NAME, MONGODB_URL_KEY
 import pymongo
 import certifi
 from dotenv import load_dotenv
+from us_visa.logger import structlog
+
+logging = structlog.get_logger(__name__)
 
 load_dotenv()
 
