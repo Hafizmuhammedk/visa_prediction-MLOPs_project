@@ -8,6 +8,9 @@ from pandas import DataFrame
 
 from us_visa.exception import USvisaException
 from us_visa.logger import logging
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 def read_yaml_file(file_path: str) -> dict:

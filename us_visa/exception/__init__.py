@@ -1,5 +1,8 @@
 import os
 import sys
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 def error_message_detail(error, error_detail: sys):
