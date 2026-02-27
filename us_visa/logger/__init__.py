@@ -13,9 +13,14 @@ warnings.filterwarnings(
     category=UserWarning,
     message=".*model profiles are deprecated.*"
 )
+warnings.filterwarnings(
+    "ignore",
+    category=FutureWarning,
+    message=".*Downcasting behavior in `replace` is deprecated.*"
+)
 
 logging.getLogger("evidently").setLevel(logging.WARNING)
-
+logging.getLogger('pandas').setLevel(logging.WARNING)
 structlog.configure(
         processors=[
             structlog.contextvars.merge_contextvars,
