@@ -1,0 +1,288 @@
+:root {
+  --bg: #f3efe7;
+  --text: #182227;
+  --muted: #5f6e75;
+  --panel: rgba(255, 255, 255, 0.82);
+  --stroke: rgba(24, 34, 39, 0.12);
+  --accent: #ea5c2b;
+  --accent-2: #1d9a7a;
+  --ok: #166534;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--text);
+  font-family: "IBM Plex Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background:
+    radial-gradient(circle at 12% 18%, #ffd28f 0%, transparent 32%),
+    radial-gradient(circle at 88% 82%, #a4e8d4 0%, transparent 38%),
+    linear-gradient(140deg, #f7f3eb 0%, #f6efe4 52%, #efe6d6 100%);
+  overflow-x: hidden;
+}
+
+.bg-orb {
+  position: fixed;
+  border-radius: 50%;
+  z-index: -2;
+  filter: blur(18px);
+  animation: float 12s ease-in-out infinite;
+}
+
+.orb-a {
+  width: 380px;
+  height: 380px;
+  background: rgba(234, 92, 43, 0.22);
+  top: -140px;
+  right: -100px;
+}
+
+.orb-b {
+  width: 360px;
+  height: 360px;
+  background: rgba(29, 154, 122, 0.2);
+  bottom: -130px;
+  left: -120px;
+  animation-delay: 2s;
+}
+
+.grid-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(to right, rgba(24, 34, 39, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(24, 34, 39, 0.045) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: radial-gradient(circle at center, black 38%, transparent 90%);
+}
+
+.page {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 2rem auto 3rem;
+  display: grid;
+  grid-template-columns: 1.1fr 1.5fr;
+  gap: 1rem;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--stroke);
+  backdrop-filter: blur(6px);
+  border-radius: 22px;
+  box-shadow: 0 10px 34px rgba(24, 34, 39, 0.08);
+}
+
+.hero {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.badge {
+  margin: 0;
+  width: fit-content;
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(90deg, var(--accent), #f17e2e);
+  border-radius: 999px;
+  padding: 0.38rem 0.72rem;
+}
+
+h1 {
+  margin: 0.1rem 0;
+  font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+}
+
+.subhead {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.52;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  border: 1px solid rgba(24, 34, 39, 0.16);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.34rem 0.68rem;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.form-panel {
+  padding: 1.4rem 1.3rem;
+}
+
+.visa-form h2 {
+  margin: 0 0 1rem;
+  font-size: 1.2rem;
+  font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+label span {
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+input,
+select {
+  width: 100%;
+  min-height: 45px;
+  border-radius: 12px;
+  border: 1px solid rgba(24, 34, 39, 0.2);
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--text);
+  padding: 0.64rem 0.72rem;
+  font: inherit;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+input::placeholder {
+  color: #8d989d;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(234, 92, 43, 0.16);
+  transform: translateY(-1px);
+}
+
+.cta {
+  margin-top: 1rem;
+  width: 100%;
+  min-height: 50px;
+  border-radius: 14px;
+  border: 0;
+  cursor: pointer;
+  font: 700 0.95rem/1 "Space Grotesk", "Trebuchet MS", sans-serif;
+  letter-spacing: 0.01em;
+  color: #fff;
+  background: linear-gradient(96deg, #ea5c2b, #d84c1f 45%, #1d9a7a 125%);
+  box-shadow: 0 12px 24px rgba(234, 92, 43, 0.26);
+  transition: transform 170ms ease, box-shadow 170ms ease, filter 170ms ease;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(234, 92, 43, 0.32);
+  filter: saturate(1.08);
+}
+
+.cta:active {
+  transform: translateY(0);
+}
+
+.result-panel {
+  grid-column: 1 / -1;
+  padding: 1.1rem 1.3rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.result-label {
+  margin: 0;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.result-value {
+  margin: 0;
+  font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+  font-size: clamp(1.05rem, 2.6vw, 1.6rem);
+  font-weight: 700;
+  color: var(--ok);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: reveal 620ms ease forwards;
+}
+
+.form-panel.reveal {
+  animation-delay: 120ms;
+}
+
+.result-panel.reveal {
+  animation-delay: 220ms;
+}
+
+@keyframes reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-14px) scale(1.04);
+  }
+}
+
+@media (max-width: 960px) {
+  .page {
+    grid-template-columns: 1fr;
+  }
+
+  .result-panel {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero,
+  .form-panel,
+  .result-panel {
+    padding: 1rem;
+    border-radius: 16px;
+  }
+}

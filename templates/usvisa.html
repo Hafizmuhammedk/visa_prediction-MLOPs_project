@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>US Visa Decision Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
+</head>
+<body>
+  <div class="bg-orb orb-a"></div>
+  <div class="bg-orb orb-b"></div>
+  <div class="grid-overlay"></div>
+
+  <main class="page">
+    <section class="hero panel reveal">
+      <p class="badge">MLOps Visa Classifier</p>
+      <h1>US Visa<br>Decision Intelligence</h1>
+      <p class="subhead">
+        Submit candidate and employer details to estimate visa approval likelihood using your trained model pipeline.
+      </p>
+      <div class="chip-row">
+        <span class="chip">FastAPI</span>
+        <span class="chip">Model Inference</span>
+        <span class="chip">Real-time Response</span>
+      </div>
+    </section>
+
+    <section class="panel form-panel reveal">
+      <form action="/" method="post" class="visa-form">
+        <h2>Application Inputs</h2>
+
+        <div class="form-grid">
+          <label>
+            <span>Continent</span>
+            <select id="continent" name="continent" required>
+              <option value="" disabled selected>Select continent</option>
+              <option>Asia</option>
+              <option>Africa</option>
+              <option>North America</option>
+              <option>Europe</option>
+              <option>South America</option>
+              <option>Oceania</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Education</span>
+            <select id="education_of_employee" name="education_of_employee" required>
+              <option value="" disabled selected>Select education</option>
+              <option>High School</option>
+              <option>Master's</option>
+              <option>Bachelor's</option>
+              <option>Doctorate</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Job Experience</span>
+            <select id="has_job_experience" name="has_job_experience" required>
+              <option value="" disabled selected>Select</option>
+              <option>N</option>
+              <option>Y</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Requires Training</span>
+            <select id="requires_job_training" name="requires_job_training" required>
+              <option value="" disabled selected>Select</option>
+              <option>N</option>
+              <option>Y</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Number of Employees</span>
+            <input type="number" id="no_of_employees" name="no_of_employees" min="14500" max="40000" placeholder="14500 - 40000" required>
+          </label>
+
+          <label>
+            <span>Region</span>
+            <select id="region_of_employment" name="region_of_employment" required>
+              <option value="" disabled selected>Select region</option>
+              <option>West</option>
+              <option>Northeast</option>
+              <option>South</option>
+              <option>Midwest</option>
+              <option>Island</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Prevailing Wage</span>
+            <input type="number" id="prevailing_wage" name="prevailing_wage" min="0" max="70000" step="any" placeholder="0 - 70000" required>
+          </label>
+
+          <label>
+            <span>Wage Unit</span>
+            <select id="unit_of_wage" name="unit_of_wage" required>
+              <option value="" disabled selected>Select unit</option>
+              <option>Hour</option>
+              <option>Year</option>
+              <option>Week</option>
+              <option>Month</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Full Time Position</span>
+            <select id="full_time_position" name="full_time_position" required>
+              <option value="" disabled selected>Select</option>
+              <option>Y</option>
+              <option>N</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Company Age</span>
+            <input type="number" id="company_age" name="company_age" min="15" max="180" placeholder="15 - 180" required>
+          </label>
+        </div>
+
+        <button type="submit" class="cta">Predict Visa Status</button>
+      </form>
+    </section>
+
+    <section class="panel result-panel reveal">
+      <p class="result-label">Latest Prediction</p>
+      <p class="result-value">
+        {% if context and context != "Rendering" %}
+          {{ context }}
+        {% else %}
+          Awaiting submission
+        {% endif %}
+      </p>
+    </section>
+  </main>
+</body>
+</html>

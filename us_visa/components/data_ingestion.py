@@ -6,14 +6,13 @@ from sklearn.model_selection import train_test_split
 
 from us_visa.entity.config_entity import DataIngestionConfig
 from us_visa.entity.artifact_entity import DataIngestionArtifact
-from us_visa.exception import USvisaException
+from us_visa.exception import UsVisaException
 from us_visa.data_access.usvisa_data import USvisaData
-from dotenv import load_dotenv
+
 from us_visa.logger import structlog
 
 logging = structlog.get_logger(__name__)
 
-load_dotenv()
 
 
 class DataIngestion:
@@ -24,7 +23,7 @@ class DataIngestion:
         try:
             self.data_ingestion_config = data_ingestion_config
         except Exception as e:
-            raise USvisaException(e,sys)
+            raise UsVisaException(e,sys)
         
 
     
@@ -39,7 +38,8 @@ class DataIngestion:
         try:
             logging.info(f"Exporting data from mongodb")
             usvisa_data = USvisaData()
-            dataframe = usvisa_data.export_collection_as_dataframe(collection_name=self.data_ingestion_config.collection_name)
+            dataframe = usvisa_data.export_collection_as_dataframe(collection_name=
+                                                                   self.data_ingestion_config.collection_name)
             logging.info(f"Shape of dataframe: {dataframe.shape}")
             feature_store_file_path  = self.data_ingestion_config.feature_store_file_path
             dir_path = os.path.dirname(feature_store_file_path)
@@ -49,7 +49,7 @@ class DataIngestion:
             return dataframe
 
         except Exception as e:
-            raise USvisaException(e,sys)
+            raise UsVisaException(e,sys)
         
 
     def split_data_as_train_test(self,dataframe: DataFrame) ->None:
@@ -77,7 +77,7 @@ class DataIngestion:
 
             logging.info(f"Exported train and test file path.")
         except Exception as e:
-            raise USvisaException(e, sys) from e
+            raise UsVisaException(e, sys) from e
         
 
 
@@ -111,4 +111,4 @@ class DataIngestion:
             logging.info(f"Data ingestion artifact: {data_ingestion_artifact}")
             return data_ingestion_artifact
         except Exception as e:
-            raise USvisaException(e, sys) from e
+            raise UsVisaException(e, sys) from e
