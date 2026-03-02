@@ -214,5 +214,3 @@ python3 demo.py
 4. Push branch and open a Pull Request
 
 ---
-
-If you want, I can also add a **deployment section** (Render/EC2/GCP/Azure) and a **badges header** for GitHub.
